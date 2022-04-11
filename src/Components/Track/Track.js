@@ -1,25 +1,65 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
+import React from 'react';
 import './Track.css';
 
-function Track(props) {
-  const [isRemoval, setIsRemoval] = useState(false);
-  useEffect(() => {
+// function Track(props) {
+//   // const [isRemoval, setIsRemoval] = useState(props.isRemoval);
+//   // useEffect(() => {
 
-  })
+//   // })
+//   console.log(props.track);
+//   const renderAction = () => {
+//     return props.isRemoval ? "-" : "+";
+//   };
 
-  const renderAction = () => {
-    return isRemoval ? "-" : "+";
-  };
+//   // const addTrack = props.onAdd(props.track);
 
-  return (
-    <div className="Track">
-      <div className="Track-information">
-        <h3>{props.name}</h3>
-        <p>{props.artist} | {props.album}</p>
+//   return (
+//     <div className="Track">
+//       <div className="Track-information">
+//         <h3>{props.track.name}</h3>
+//         <p>{props.track.artist} | {props.track.album}</p>
+//       </div>
+//       <button className="Track-action" >{renderAction()}</button>
+//     </div>
+//   );
+// }
+
+class Track extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addTrack = this.addTrack.bind(this);
+    this.renderAction = this.renderAction.bind(this);
+  }
+
+  addTrack(track) {
+    this.props.onAdd(track);
+  }
+
+  renderAction() {
+    if (this.props.isRemoval) {
+      return (
+        <button className="Track-action" >-</button>
+      );
+    } else {
+      // console.log(this.props.track);
+      return (
+        <button className="Track-action" onClick={this.addTrack(this.props.track)} >+</button>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div className="Track">
+        <div className="Track-information">
+          <h3>{this.props.track.name}</h3>
+          <p>{this.props.track.artist} | {this.props.track.album}</p>
+        </div>
+        {this.renderAction()}
       </div>
-      <button className="Track-action">{renderAction}</button>
-    </div>
-  );
+    );
+  }
 }
 
 export default Track;

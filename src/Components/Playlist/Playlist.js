@@ -7,8 +7,8 @@ function Playlist(props) {
       <input defaultValue={'New Playlist'}/>
       {/* <TrackList /> */}
       <h2>{props.playlistName}</h2>
-      <TrackList tracks={props.playlistTracks} />
-      <button class="Playlist-save">SAVE TO SPOTIFY</button>
+      <TrackList tracks={props.playlistTracks} isRemoval={true} />
+      <button className="Playlist-save">SAVE TO SPOTIFY</button>
     </div>
   )
 }

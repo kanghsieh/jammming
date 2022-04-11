@@ -46,7 +46,23 @@ class App extends React.Component {
           }
         ]
       }
+    };
+    this.addTrack = this.addTrack.bind(this);
   }
+
+  addTrack(track) {
+    // Use the track’s id property to check if the current song is in the playlistTracks state.
+    // console.log(this.state.playlist.playlistTracks);
+    if (!this.state.playlist.playlistTracks.some((element) => element.id === track.id)) {
+      // If the id is new, add the song to the end of the playlist.
+      this.setState((prevState) => {
+        let copiedState = Object.assign({}, prevState);
+        copiedState.playlist.playlistTracks.push(track);
+        return copiedState;
+      });
+    } else {
+      console.log('track already existing');
+    }
   }
 
   render() {
@@ -57,11 +73,9 @@ class App extends React.Component {
           {/* -- Add a SearchBar component }
           {/* <SearchBar /> */}
           <div className="App-playlist">
-            {/* <!-- Add a SearchResults component -->
-            <SearchResults /> */}
-            <SearchResults searchResults={this.state.searchResults} />
-            {/* <!-- Add a Playlist component -->
-            <Playlist /> */}
+            {/* <!-- Add a SearchResults component -->*/}
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+            {/* <!-- Add a Playlist component --> */}
             <Playlist playlistName={this.state.playlist.playlistName} playlistTracks={this.state.playlist.playlistTracks} />
           </div>
         </div>
