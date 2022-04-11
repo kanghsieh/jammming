@@ -1,4 +1,5 @@
 import './SearchResults.css';
+import TrackList from '../TrackList/TrackList';
 
 function SearchResults(props) {
   console.log(props);
@@ -6,9 +7,7 @@ function SearchResults(props) {
     <div className="SearchResults">
       <h2>Results</h2>
       {/* <TrackList /> */}
-      <ul>
-        {props.searchResults.map((result) => <li>{result.name}</li>)}
-      </ul>
+      <TrackList tracks={props.searchResults} />
     </div>
   );
 };

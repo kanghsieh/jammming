@@ -1,20 +1,11 @@
 import './TrackList.css';
 
 function TrackList(props) {
-  // const sampleTracks = [
-  //   "Numb",
-  //   "Sky and Sand",
-  //   "Slim Shady"
-  // ]
-
   return (
     <div className="TrackList">
       {/* add a map method that renders a set of Track components */}
-      {/* <ul>
-        {sampleTracks.map((track) => <li>{track}</li>)}
-      </ul> */}
       <ul>
-        {props.searchResults.map((result) => <li>{result.name}</li>)}
+        {props.tracks.map((track) => <li key={track.id}>{track.name} | {track.artist} | {track.album}</li>)}
       </ul>
     </div>
   );
