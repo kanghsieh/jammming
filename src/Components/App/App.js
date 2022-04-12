@@ -48,6 +48,7 @@ class App extends React.Component {
       }
     };
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
 
   addTrack(track) {
@@ -55,7 +56,6 @@ class App extends React.Component {
     // console.log(this.state.playlist.playlistTracks);
     this.setState((prevState) => {
       let copiedState = Object.assign({}, prevState);
-      console.log(copiedState);
       if (!this.state.playlist.playlistTracks.some((element) => element.id === track.id)) {
         copiedState.playlist.playlistTracks.push(track);
         return copiedState;
@@ -63,6 +63,19 @@ class App extends React.Component {
         return copiedState;
       }
     });
+  }
+
+  removeTrack(track) {
+    this.setState((prevState) => {
+      let copiedState = Object.assign({}, prevState);
+      let trackIndex = copiedState.playlist.playlistTracks.findIndex((element) => element.id === track.id);
+      if (trackIndex >= 0) {
+        copiedState.playlist.playlistTracks.splice(trackIndex, 1);
+        return copiedState;
+      } else {
+        return copiedState;
+      }
+    })
   }
 
   render() {
@@ -76,7 +89,10 @@ class App extends React.Component {
             {/* <!-- Add a SearchResults component -->*/}
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
             {/* <!-- Add a Playlist component --> */}
-            <Playlist playlistName={this.state.playlist.playlistName} playlistTracks={this.state.playlist.playlistTracks} />
+            <Playlist
+              playlistName={this.state.playlist.playlistName}
+              playlistTracks={this.state.playlist.playlistTracks}
+              onRemove={this.removeTrack} />
           </div>
         </div>
       </div>
