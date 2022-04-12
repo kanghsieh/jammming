@@ -53,16 +53,16 @@ class App extends React.Component {
   addTrack(track) {
     // Use the track’s id property to check if the current song is in the playlistTracks state.
     // console.log(this.state.playlist.playlistTracks);
-    if (!this.state.playlist.playlistTracks.some((element) => element.id === track.id)) {
-      // If the id is new, add the song to the end of the playlist.
-      this.setState((prevState) => {
-        let copiedState = Object.assign({}, prevState);
+    this.setState((prevState) => {
+      let copiedState = Object.assign({}, prevState);
+      console.log(copiedState);
+      if (!this.state.playlist.playlistTracks.some((element) => element.id === track.id)) {
         copiedState.playlist.playlistTracks.push(track);
         return copiedState;
-      });
-    } else {
-      console.log('track already existing');
-    }
+      } else {
+        return copiedState;
+      }
+    });
   }
 
   render() {
