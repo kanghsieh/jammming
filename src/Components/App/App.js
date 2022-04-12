@@ -97,7 +97,7 @@ class App extends React.Component {
   }
 
   search(query) {
-    console.log(query);
+    return query;
   }
 
   render() {
