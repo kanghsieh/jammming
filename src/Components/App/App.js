@@ -4,6 +4,7 @@ import logo from '../../logo.svg';
 import './App.css';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from "../Playlist/Playlist";
+import SearchBar from '../SearchBar/SearchBar';
 
 class App extends React.Component {
   constructor(props) {
@@ -50,6 +51,8 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
   }
 
   addTrack(track) {
@@ -86,6 +89,17 @@ class App extends React.Component {
     })
   }
 
+  savePlaylist() {
+    // Generates an array of uri values called trackURIs from the playlistTracks property.
+    const trackURIs = [];
+    // pass the trackURIs array and playlistName to a method that will save the user’s playlist to their account.
+
+  }
+
+  search(query) {
+    console.log(query);
+  }
+
   render() {
     return (
       <div>
@@ -93,6 +107,7 @@ class App extends React.Component {
         <div className="App">
           {/* -- Add a SearchBar component }
           {/* <SearchBar /> */}
+          <SearchBar onSearch={this.search} />
           <div className="App-playlist">
             {/* <!-- Add a SearchResults component -->*/}
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
@@ -101,7 +116,8 @@ class App extends React.Component {
               playlistName={this.state.playlist.playlistName}
               playlistTracks={this.state.playlist.playlistTracks}
               onRemove={this.removeTrack}
-              onNameChange={this.updatePlaylistName} />
+              onNameChange={this.updatePlaylistName}
+              onSave={this.savePlaylist} />
           </div>
         </div>
       </div>
