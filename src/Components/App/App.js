@@ -98,13 +98,12 @@ class App extends React.Component {
   }
 
   search(query) {
-    // Spotify.search(query).then((results) => {
-    //   this.setState((prevState) => {
-    //     prevState.playlist.playlistTracks = results;
-    //     return prevState;
-    //   })
+    console.log(Spotify.search(query));
+    // Spotify.search(query)
+    //   .then((searchResults) => {
+    //   this.setState({ searchResults: searchResults });
     // })
-    return query;
+    // return query;
   }
 
   render() {

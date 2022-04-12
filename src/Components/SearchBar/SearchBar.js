@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import './SearchBar.css';
 
 function SearchBar(props) {
-  const [term, setTerm] = useState(props.onSearch);
+  const [term, setTerm] = useState('');
 
-  // const search = (query) => {
-  //   props.onSearch = term;
-  // }
+  const search = () => {
+    props.onSearch(term);
+  }
 
   const handleTermChange = (event) => {
     console.log(event.target.value);
